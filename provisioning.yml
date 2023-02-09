@@ -3,10 +3,7 @@
   tasks:
     - name: 'Instala pacotes de dependências do sistema operacional'
       apt:
-        name: "{{ item }}"
-        state: latest
-      become: yes
-      with_items:
+        name: 
         - php
         - php-fpm
         - apache2
@@ -18,7 +15,9 @@
         - libmysqlclient-dev
         - python3-pip
         - php-mysql
-
+        state: latest
+      become: yes
+      
     - name: instalando mysql-python com pip
       pip:
         name:
