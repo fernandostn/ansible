@@ -1,23 +1,25 @@
 ---
 - hosts: all
   tasks:
-    - name: 'Instala PHP'
+    - name: 'Instala pacotes de dependências do sistema operacional'
       apt:
-        name: php
+        name: "{{ item }}"
         state: latest
-        update_cache: yes
       become: yes
-    
-    - name: 'Instala Apache2'
-      apt:
-        name: apache2
-        state: latest
-        update_cache: yes
-      become: yes
-    
-    - name: 'Instala o modphp'
-      apt:
-        name: libapache2-mod-php
-        state: latest
-        update_cache: yes
-      become: yes
+      with_items:
+        - php
+        - php-fpm
+        - apache2
+        - libapache2-mod-php
+        - php-gd
+        - php-ssh2
+        - libmcrypt-dev
+        - python3-dev
+        - libmysqlclient-dev
+        - python3-pip
+        - php-mysql
+
+    - name: instalando mysql-python com pip
+      pip:
+        name:
+          - mysql-connector-python
