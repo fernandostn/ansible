@@ -1,7 +1,7 @@
 ---
 - hosts: all
   tasks:
-    - name: 'Instala pacotes de dependências do sistema operacional'
+    - name: instalando pacotes de dependências do sistema operacional
       apt:
         name: 
         - php
@@ -15,6 +15,11 @@
         - libmysqlclient-dev
         - python3-pip
         - php-mysql
+        - mysqldb
+        - PyMySQL
+        - mysql
+        - mysqlclient
+        - mysqldump
         state: latest
       become: yes
       
@@ -22,3 +27,9 @@
       pip:
         name:
           - mysql-connector-python
+
+    - name: criando o banco MySQL
+      community.mysql.mysql_db:
+        name: wordpress_db
+        login_user: root
+        state: present
