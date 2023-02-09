@@ -1,2 +1,2 @@
 [wordpress]
-44.204.206.88
+44.204.206.88 ansible_user=ubuntu ansible_ssh_private_key_file=iac-alura.pem
