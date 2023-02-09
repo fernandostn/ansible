@@ -1,4 +1,23 @@
 ---
 - hosts: all
   tasks:
-    - shell: 'echo hello > /home/ubuntu/world.txt'
+    - name: 'Instala PHP'
+      apt:
+        name: php
+        state: latest
+        update_cache: yes
+      become: yes
+    
+    - name: 'Instala Apache2'
+      apt:
+        name: apache2
+        state: latest
+        update_cache: yes
+      become: yes
+    
+    - name: 'Instala o modphp'
+      apt:
+        name: libapache2-mod-php
+        state: latest
+        update_cache: yes
+      become: yes
